@@ -14,6 +14,7 @@
     --surface-2:#eaf0f6;
     --border:#cbd6e2;
     --coral:#ff7a59;
+    --coral-light:#ffd6c9;
     --coral-text:#c2410c;
     --coral-dim:rgba(255,122,89,0.12);
     --teal:#00a4bd;
@@ -166,22 +167,29 @@
     width:100%;
     max-width:640px;
     margin:40px auto 0;
-    aspect-ratio:600/320;
+    aspect-ratio:600/370;
+    background:transparent;
   }
-  .loop-stage svg{ width:100%; height:100%; display:block; }
+  .loop-stage svg{ width:100%; height:100%; display:block; background:transparent; }
+  .loop-ring{
+    fill:none;
+    stroke:var(--coral-light);
+    stroke-width:34;
+  }
   .loop-arc{
     fill:none;
-    stroke:var(--text-dim);
-    stroke-width:14;
+    stroke:var(--coral-light);
+    stroke-width:40;
     stroke-linecap:round;
-    transition:stroke .4s ease, opacity .4s ease;
+    transition:stroke .4s ease;
   }
   .loop-arc.active{ stroke:var(--coral); }
+  .loop-sparkle{ fill:var(--bg); }
 
   .loop-btn{
     position:absolute;
     transform:translate(-50%,-50%);
-    background:var(--surface);
+    background:var(--bg);
     border:1px solid var(--border);
     color:var(--text-muted);
     font-family:var(--mono);
@@ -201,10 +209,10 @@
   }
   .loop-btn:focus-visible{ outline:2px solid var(--teal); outline-offset:2px; }
 
-  .loop-btn[data-stage="express"]{ left:36.7%; top:5.6%; }
-  .loop-btn[data-stage="amplify"]{ left:63.3%; top:5.6%; }
-  .loop-btn[data-stage="evolve"]{ left:36.7%; top:94.4%; }
-  .loop-btn[data-stage="tailor"]{ left:63.3%; top:94.4%; }
+  .loop-btn[data-stage="express"]{ left:36.7%; top:6.8%; }
+  .loop-btn[data-stage="amplify"]{ left:63.3%; top:6.8%; }
+  .loop-btn[data-stage="evolve"]{ left:36.7%; top:93.2%; }
+  .loop-btn[data-stage="tailor"]{ left:63.3%; top:93.2%; }
 
   .loop-panel{
     background:var(--surface);
@@ -434,16 +442,19 @@
     <p class="lede">Loop Marketing formalizes something I did manually, sequentially, and slower for years. Click through each stage to see how the Anatomy &amp; Physiology launch actually played out.</p>
 
     <div class="loop-stage">
-      <svg viewBox="0 0 600 320" role="img" aria-label="Loop Marketing diagram with four stages: Express, Amplify, Evolve, and Tailor">
-        <path class="loop-arc" data-stage="express" d="M110,160 A110,110 0 0 1 330,160" />
-        <path class="loop-arc" data-stage="evolve"  d="M110,160 A110,110 0 0 0 330,160" />
-        <path class="loop-arc" data-stage="amplify" d="M270,160 A110,110 0 0 1 490,160" />
-        <path class="loop-arc" data-stage="tailor"  d="M270,160 A110,110 0 0 0 490,160" />
+      <svg viewBox="0 0 600 370" role="img" aria-label="Infinity loop diagram with four stages: Express, Tailor, Amplify, and Evolve">
+        <circle class="loop-ring" cx="220" cy="170" r="100" />
+        <circle class="loop-ring" cx="380" cy="170" r="100" />
+        <path class="loop-arc active" data-stage="express" d="M155.7,93.4 A100,100 0 0 1 284.3,93.4" />
+        <path class="loop-arc" data-stage="amplify" d="M315.7,93.4 A100,100 0 0 1 444.3,93.4" />
+        <path class="loop-arc" data-stage="tailor"  d="M444.3,246.6 A100,100 0 0 1 315.7,246.6" />
+        <path class="loop-arc" data-stage="evolve"  d="M284.3,246.6 A100,100 0 0 1 155.7,246.6" />
+        <path class="loop-sparkle" transform="translate(282,152) scale(1.5)" d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0 Z" />
       </svg>
-      <button class="loop-btn active" data-stage="express">Express</button>
-      <button class="loop-btn" data-stage="amplify">Amplify</button>
-      <button class="loop-btn" data-stage="evolve">Evolve</button>
-      <button class="loop-btn" data-stage="tailor">Tailor</button>
+      <button class="loop-btn active" data-stage="express">01 &middot; Express</button>
+      <button class="loop-btn" data-stage="amplify">03 &middot; Amplify</button>
+      <button class="loop-btn" data-stage="evolve">04 &middot; Evolve</button>
+      <button class="loop-btn" data-stage="tailor">02 &middot; Tailor</button>
     </div>
 
     <div class="loop-panel">
